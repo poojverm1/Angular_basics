@@ -9,6 +9,7 @@ import { BlogCreateComponent } from './blog-create/blog-create.component';
 import { BlogEditComponent } from './blog-edit/blog-edit.component';
 import { AboutComponent } from './about/about.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { BlogService } from './blog.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
 
     ])
   ],
-  providers: [],
+  providers: [BlogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

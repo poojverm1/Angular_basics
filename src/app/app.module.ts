@@ -10,6 +10,12 @@ import { BlogEditComponent } from './blog-edit/blog-edit.component';
 import { AboutComponent } from './about/about.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { BlogService } from './blog.service';
+import { BlogHttpService } from './blog-http.service';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+
 
 @NgModule({
   declarations: [
@@ -19,10 +25,17 @@ import { BlogService } from './blog.service';
     BlogCreateComponent,
     BlogEditComponent,
     AboutComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    
+  
+
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    
+    BrowserAnimationsModule,
     RouterModule.forRoot([
       {path:'home',component:HomeComponent},
       {path:'',redirectTo:'home',pathMatch:'full'},
@@ -35,7 +48,7 @@ import { BlogService } from './blog.service';
 
     ])
   ],
-  providers: [BlogService],
+  providers: [BlogService,BlogHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

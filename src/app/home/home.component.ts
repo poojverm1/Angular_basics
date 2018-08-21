@@ -1,6 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BlogService } from '../blog.service';
-
+import { Observable } from '../../../node_modules/rxjs';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/do';
+import { BlogHttpService } from '../blog-http.service';
 
 //decorator
 @Component({
@@ -14,18 +17,31 @@ import { BlogService } from '../blog.service';
 export class HomeComponent implements OnInit,OnDestroy{
 
   public allBlogs;
+ 
 
-  constructor(private blogService:BlogService) {
+  constructor(private blogHttpService:BlogHttpService) {
     console.log("Home component constuctor is called");
    }
 
   ngOnInit() {
 console.log("Home component init is called");
- this.allBlogs = this.blogService.getAllBlogs();
- console.log(this.allBlogs);
+this.allBlogs = this.blogHttpService.getAllBlogs().subscribe(
+
+  data =>{
+    console.log("logging data");
+    console.log(data);
+    this.allBlogs = data["data"];
+  },
+  error =>{
+    console.log("some error occured");
+    console.log(error.errorMessage);
+  }
+)
+console.log(this.allBlogs);
+
   }
 
   ngOnDestroy() {
-    console.log("Home componentt Destroy is called")
+    console.log("Home component Destroy is called")
   }
 }

@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./blog-edit.component.css']
 })
 export class BlogEditComponent implements OnInit {
-
+public currentBlog;
+public possibleCategories =["comedy","action","technology"]
   constructor() { }
 
   ngOnInit() {
